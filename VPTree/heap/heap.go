@@ -2,7 +2,6 @@ package heap
 
 import (
 	"errors"
-	"fmt"
 )
 
 type Node struct {
@@ -22,12 +21,21 @@ type Heap struct {
 }
 
 func BinaryHeap() *Heap {
-	return &Heap{Root: nil}
+	return &Heap{
+		Root: nil,
+	}
 }
 
 func (n *Node) Less(o *Node) bool {
 	if o == nil {
 		return false
+	}
+	return n.Distance < o.Distance
+}
+
+func (n *Node) LessNil(o *Node) bool {
+	if o == nil {
+		return true
 	}
 	return n.Distance < o.Distance
 }
@@ -39,18 +47,26 @@ func (n *Node) Greater(o *Node) bool {
 	return n.Distance > o.Distance
 }
 
-func (n *Node) LessNil(o *Node) bool {
-	if o == nil {
-		return true
-	}
-	return n.Distance < o.Distance
+func SwapNodes(node1 *Node, node2 *Node) {
+	tempDistance := node1.Distance
+	tempVector := node1.Vector
+	node1.Distance = node2.Distance
+	node1.Vector = node2.Vector
+	node2.Distance = tempDistance
+	node2.Vector = tempVector
 }
 
-func (n *Node) GreaterNil(o *Node) bool {
-	if o == nil {
-		return true
+func Recount(leaf *Node) {
+	if leaf.Parent == nil {
+		return
 	}
-	return n.Distance > o.Distance
+	if leaf.LeftChild {
+		leaf.Parent.LeftNodes -= 1
+	} else if leaf.RightChild {
+		leaf.Parent.RightNodes -= 1
+	}
+
+	Recount(leaf.Parent)
 }
 
 func (tree *Heap) Insert(distance float32, vector []float32) error {
@@ -62,8 +78,9 @@ func (tree *Heap) Insert(distance float32, vector []float32) error {
 		LeftNodes:  0,
 		LeftChild:  false,
 		RightChild: false,
-		Distance:   distance,
-		Vector:     vector,
+
+		Distance: distance,
+		Vector:   vector,
 	}
 
 	if tree.Root == nil {
@@ -110,74 +127,48 @@ func (tree *Heap) Insert(distance float32, vector []float32) error {
 }
 
 func (tree *Heap) Pop() []float32 {
-	root := tree.Root.Vector
+	root_vector := tree.Root.Vector
 
-	current := tree.Root
-	for current.Left != nil && current.Right != nil {
-		if current.LeftNodes == current.RightNodes {
-			current.LeftNodes += 1
-			current = current.Left
+	last_node := tree.Root
+	for {
+		if last_node.Right == nil && last_node.Left == nil {
+			break
 		} else {
-			current.RightNodes += 1
-			current = current.Right
+			if last_node.LeftNodes == last_node.RightNodes {
+				last_node = last_node.Right
+			} else {
+				last_node = last_node.Left
+			}
 		}
 	}
 
-	if current.Left != nil {
-		current = current.Left
-	} else if current.Right != nil {
-		current = current.Right
-	}
-
-	if current.LeftChild {
-		current.Parent.Left = nil
-	} else {
-		current.Parent.Right = nil
-	}
-
-	tree.Root.Distance = current.Distance
-	swapped_node := tree.Root
-	for swapped_node.Greater(swapped_node.Left) || swapped_node.Greater(swapped_node.Right) {
-		if swapped_node.Greater(swapped_node.Left) && swapped_node.Left.LessNil(swapped_node.Right) {
-			tempDistance := swapped_node.Left.Distance
-			tempVector := swapped_node.Left.Vector
-			swapped_node.Left.Distance = swapped_node.Distance
-			swapped_node.Left.Vector = swapped_node.Vector
-			swapped_node.Distance = tempDistance
-			swapped_node.Vector = tempVector
-			swapped_node = swapped_node.Left
-		} else if swapped_node.Greater(swapped_node.Right) && swapped_node.Right.LessNil(swapped_node.Left) {
-			tempDistance := swapped_node.Right.Distance
-			tempVector := swapped_node.Right.Vector
-			swapped_node.Right.Distance = swapped_node.Distance
-			swapped_node.Right.Vector = swapped_node.Vector
-			swapped_node.Distance = tempDistance
-			swapped_node.Vector = tempVector
-			swapped_node = swapped_node.Right
+	SwapNodes(last_node, tree.Root)
+	Recount(last_node)
+	if last_node.Parent != nil {
+		if last_node.LeftChild {
+			last_node.Parent.Left = nil
+		} else {
+			last_node.Parent.Right = nil
 		}
 	}
 
-	return root
+	node_to_swap := tree.Root
+	for (node_to_swap.Greater(node_to_swap.Left) || node_to_swap.Greater(node_to_swap.Right)) &&
+		(node_to_swap.Right != nil && node_to_swap.Left != nil) {
+		if node_to_swap.Left.LessNil(node_to_swap.Right) {
+			SwapNodes(node_to_swap, node_to_swap.Left)
+			node_to_swap = node_to_swap.Left
+		} else if node_to_swap.Right != nil {
+			SwapNodes(node_to_swap, node_to_swap.Right)
+			node_to_swap = node_to_swap.Right
+		}
+	}
+
+	return root_vector
 }
 
 func (tree *Heap) Peek() []float32 {
 	return tree.Root.Vector
-}
-
-func LeftTraversal(root *Node) {
-	if root == nil {
-		return
-	}
-	LeftTraversal(root.Left)
-	fmt.Printf("Distance: %f, Vector: %f\n", root.Distance, root.Vector)
-}
-
-func RightTraversal(root *Node) {
-	if root == nil {
-		return
-	}
-	RightTraversal(root.Right)
-	fmt.Printf("Distance: %f, Vector: %f\n", root.Distance, root.Vector)
 }
 
 // go run heap.go
