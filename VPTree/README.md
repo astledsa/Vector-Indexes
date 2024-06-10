@@ -9,10 +9,6 @@ One of the first variations on KD Trees, this is perhaps the simplest data struc
 - If the inner-product is greater than a pre-determined <i><u>threshold</u></i>, the new node goes to the right, else left
 - The inner product could be any of these the methods (Eucilidean Distance, Manhattan Distance, Cosine Similiarity). The <i>threshold</i> value would need to be set accordingly
 
-## Benchmarks
-
-In order to test the Index (and for future comparisons with other indexes), I used the <a href="http://corpus-texmex.irisa.fr/">SIFT1M</a> dataset to benchmark the Index. The details of how I calculated the benchmarks will be below as well. I used <u>10K vectors</b> and <u>10K Queries</u> for the tests (I may add more, but the results seem to be consistent). Since my aim was not to optimise but to learn the data structure itself, I have refrained from using Golang's concurrency in this structure. Although it should be straight forward to do so.
-
 - <b>Index Construction</b> The time it takes to construct (insert) 10,000 128 dimensional vectors. <i>Time Taken : <ins>290.871062s</ins></i>
 
 - <b>Average Search Time</b> The average amount of time it takes for the search algorithm to find the top K queries, where I have set K = 5. I have averaged this value over all the 10,000 queries. <i>Time Taken :  <ins>0.058535s</ins></i>
