@@ -24,6 +24,7 @@ func randomFloat32Array(K int) []float32 {
 func main() {
 	K := 128
 	number_of_vectors_to_index := 100
+
 	// Initialise an empty vantage point tree
 	vantage_point_tree := vptree.Init_VPTree()
 
