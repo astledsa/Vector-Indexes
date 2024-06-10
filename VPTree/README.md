@@ -14,7 +14,7 @@ In order to test the Index (and for future comparisons with other indexes), I us
 
 <ins><i>Index Construction</i></ins><br> 
 The time it takes to construct (insert) 10,000 128 dimensional vectors.<br>
-<b>Time Taken : 290.871062s</b>
+<ins>Time Taken : 290.871062s</ins>
 
 <ins><i>Average Search Time</i></ins><br>
 The average amount of time it takes for the search algorithm to find the top K queries, where I have set K = 5. I have averaged this value over all the 10,000 queries.<br>
