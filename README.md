@@ -12,8 +12,8 @@ In order to test the Index (and for future comparisons with other indexes), I us
 ## [1. Vantage Point Tree](https://github.com/Astle-sudo/Vector-Indexes/tree/main/VPTree)
 
 One of the simplest vector index structure, which is just a subset of the KD Trees. These are more or less an extension of the binary tree data structure. Below is a code snippet on how to use it. For more details, visit the VPTree file. 
--  <i>Time Taken : <ins>290.871062s</ins></i>
+-  <i>Index Construction : <ins>290.871062s</ins></i>
 
--  <i>Time Taken :  <ins>0.058535s</ins></i>
+-  <i>Average Search Time:  <ins>0.058535s</ins></i>
 
--  <i>precision : <ins>0.898310</ins></i> or <ins>89%</ins>
+-  <i>Precision : <ins>0.898310</ins></i> or <ins>89%</ins>
