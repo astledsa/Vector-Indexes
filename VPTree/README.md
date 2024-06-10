@@ -15,9 +15,9 @@ In order to test the Index (and for future comparisons with other indexes), I us
 <ins><i>Index Construction</i></ins><br>
 The time it takes to construct (insert) 10,000 128 dimensional vectors. 
 
-<u><i>Average Search Time</i></u><br>
+<ins><i>Average Search Time</i></ins><br>
 The average amount of time it takes for the search algorithm to find the top K queries, where I have set K = 5. I have averaged this value over all the 10,000 queries.
 
-<u><i>Average Precision</i></u><br>
+<ins><i>Average Precision</i></ins><br>
 For each retreived vector, the cosine similiarity is calculated with respect to the original query, and if the similiarity is greater than or equal to 0.5, it's considered a true positive. The true positive value is then divided by the total number of retreived queries (5 in this case) to give the Precision of a single search over the query. These precisions are simply averaged at the end. 
 
