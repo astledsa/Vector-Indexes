@@ -38,7 +38,6 @@ func main() {
 	// The Pop() function returns the top element in the list,
 	// and keeps returning the current top element whenever
 	// called
-
 	query := randomFloat32Array(K)
 	priorityQueue := vantage_point_tree.Search(query, 5)
 	fmt.Println(priorityQueue.Pop())
