@@ -7,7 +7,7 @@ One of the first variations on KD Trees, this is perhaps the simplest data struc
 - After initialization, we select a vantage point (root node in a binary tree), which will be used to compare with other nodes.
 - During insertion, we get the inner-product between the vantage point and the new node to be inserted (which will be a vector).
 - If the inner-product is greater than a pre-determined <i><u>threshold</u></i>, the new node goes to the right, else left
-- The inner product could be any of these the methods (Eucilidean Distance, Manhattan Distance, Cosine Similiarity). The <i>threshold</i> value would need to be set accordingly. In this implementation, I have used the cosine similiarity, and used a threshold value of 0.
+- The inner product could be any of these methods (Eucilidean Distance, Manhattan Distance, Cosine Similiarity). The <i>threshold</i> value would need to be set accordingly. In this implementation, I have used the cosine similiarity, and used a threshold value of 0.
 
 ## Code Snippet
 
