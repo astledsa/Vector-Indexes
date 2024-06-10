@@ -2,6 +2,10 @@
 
 A vector index library written in Go, this is purely for my interest in learning the fascinating data structures utilised in the construction of vector indexes. I have decided to build them from scratch in Golang, and test on them personal as well as public datasets. Below are the indexes I've implemented so far, and hopefully will keep adding to them!
 
+## Benchmarks
+
+In order to test the Index (and for future comparisons with other indexes), I used the <a href="http://corpus-texmex.irisa.fr/">SIFT1M</a> dataset to benchmark the Index. The details of how I calculated the benchmarks will be below as well. I used <u>10K vectors</b> and <u>10K Queries</u> for the tests (I may add more, but the results seem to be consistent). Since my aim was not to optimise but to learn the data structure itself, I have refrained from using Golang's concurrency in this structure. Although it should be straight forward to do so.
+
 ## [Vantage Point Tree](https://github.com/Astle-sudo/Vector-Indexes/tree/main/VPTree)
 
 One of the simplest vector index structure, which is just a subset of the KD Trees. These are more or less an extension of the binary tree data structure. Below is a code snippet on how to use it. For more details, visit the VPTree file. 
