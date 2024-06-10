@@ -12,7 +12,7 @@ One of the first variations on KD Trees, this is perhaps the simplest data struc
 
 In order to test the Index (and for future comparisons with other indexes), I used the <a href="http://corpus-texmex.irisa.fr/">SIFT1M</a> dataset to benchmark the Index. The details of how I calculated the benchmarks will be below as well. I used <u>10K vectors</b> and <u>10K Queries</u> for the tests (I may add more, but the results seem to be consistent). Since my aim was not to optimise but to learn the data structure itself, I have refrained from using Golang's concurrency in this structure. Although it should be straight forward to do so.
 
-### Index Construction (10k 128 dimensional vectors) : 290.871062s
-### Average Search Time (10K Queries, top 5 results) : 0.058535s
-### Average Precision (true positives/total queries retreived) : 0.898310
+<i>Index Construction</i>
+<i>Average Search Time</i>
+<i>Average Precision</i>
 
