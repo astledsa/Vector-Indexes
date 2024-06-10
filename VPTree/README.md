@@ -9,10 +9,6 @@ One of the first variations on KD Trees, this is perhaps the simplest data struc
 - If the inner-product is greater than a pre-determined <i><u>threshold</u></i>, the new node goes to the right, else left
 - The inner product could be any of these the methods (Eucilidean Distance, Manhattan Distance, Cosine Similiarity). The <i>threshold</i> value would need to be set accordingly
 
-- <b>Index Construction</b> The time it takes to construct (insert) 10,000 128 dimensional vectors. <i>Time Taken : <ins>290.871062s</ins></i>
 
-- <b>Average Search Time</b> The average amount of time it takes for the search algorithm to find the top K queries, where I have set K = 5. I have averaged this value over all the 10,000 queries. <i>Time Taken :  <ins>0.058535s</ins></i>
-
-- <b>Average Precision</b> For each retreived vector, the cosine similiarity is calculated with respect to the original query, and if the similiarity is greater than or equal to 0.5, it's considered a true positive. The true positive value is then divided by the total number of retreived queries (5 in this case) to give the Precision of a single search over the query. These precisions are simply averaged at the end. <i>precision : <ins>0.898310</ins></i> or <ins>89%</ins>
 
  
