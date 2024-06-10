@@ -2,9 +2,8 @@ package vptree
 
 import (
 	"math"
-	"math/rand"
 
-	"VPTree/heap"
+	"test/indexes/VPTree/heap"
 )
 
 type Vector struct {
@@ -19,7 +18,8 @@ type Node struct {
 }
 
 type Tree struct {
-	Root *Node
+	totalNodes int
+	Root       *Node
 }
 
 func (vector *Vector) L1() float32 {
@@ -54,20 +54,8 @@ func (v *Vector) CosineSimiliarity(o *Vector) float32 {
 	return v.Dot(o) / (v.L2() * o.L2())
 }
 
-func Vantage_Point(kd_point []float32) *Tree {
-	new_vector := Vector{
-		Data: kd_point,
-	}
-	new_node := Node{
-		Left:      nil,
-		Right:     nil,
-		Vector:    &new_vector,
-		Threshold: 0,
-	}
-	new_tree := Tree{
-		Root: &new_node,
-	}
-
+func Init_VPTree() *Tree {
+	new_tree := Tree{Root: nil, totalNodes: 0}
 	return &new_tree
 }
 
@@ -81,6 +69,7 @@ func (tree *Tree) Insert(kd_point []float32) {
 
 	if tree.Root == nil {
 		tree.Root = &new_node
+		return
 	}
 
 	current := tree.Root
@@ -91,10 +80,11 @@ func (tree *Tree) Insert(kd_point []float32) {
 			current = current.Left
 		}
 	}
-
 	if current.Vector.CosineSimiliarity(new_node.Vector) > current.Threshold {
+		tree.totalNodes += 1
 		current.Right = &new_node
 	} else {
+		tree.totalNodes += 1
 		current.Left = &new_node
 	}
 }
@@ -105,9 +95,11 @@ func (tree *Tree) Search(query []float32, K int) *heap.Heap {
 
 	current := tree.Root
 	priorityQueue.Insert(queryVector.CosineSimiliarity(current.Vector), current.Vector.Data)
-	for (current != nil) && (priorityQueue.Root.RightNodes+priorityQueue.Root.LeftNodes != K) {
+	for current != nil {
 		distance := queryVector.CosineSimiliarity(current.Vector)
-		priorityQueue.Insert(distance, current.Vector.Data)
+		if math.Abs(float64(distance)) > 0.5 {
+			priorityQueue.Insert(distance, current.Vector.Data)
+		}
 		if distance > current.Threshold {
 			current = current.Right
 		} else {
@@ -117,27 +109,3 @@ func (tree *Tree) Search(query []float32, K int) *heap.Heap {
 
 	return priorityQueue
 }
-
-func GenerateRandomFloat32Array(K int) []float32 {
-	array := make([]float32, K)
-	for i := range array {
-		array[i] = rand.Float32()
-	}
-	return array
-}
-
-// func main() {
-// 	K := 10
-// 	tree := Vantage_Point(GenerateRandomFloat32Array(K))
-// 	for i := 0; i < 100; i++ {
-// 		tree.Insert(GenerateRandomFloat32Array(K))
-// 	}
-
-// 	query := GenerateRandomFloat32Array(K)
-// 	Q := tree.Search(query, 5)
-
-// 	heap.LeftTraversal(Q.Root)
-
-// }
-
-// go run main.go
