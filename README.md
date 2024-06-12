@@ -13,8 +13,6 @@ In order to test the Index (and for future comparisons with other indexes), I us
 
 One of the simplest vector index structure, which is just a subset of the KD Trees. These are more or less an extension of the binary tree data structure. Below are the benchmark of my implementation of the structure. For more details, visit the VPTree file. 
 
--  <i>Index Construction : <ins>290.871062s</ins></i>
-
--  <i>Average Search Time:  <ins>0.058535s</ins></i>
-
--  <i>Precision : <ins>0.898310</ins></i> or <ins>89%</ins>
+<i>Index Construction : <ins>290.871062s</ins></i><br>
+<i>Average Search Time:  <ins>0.058535s</ins></i><br>
+<i>Precision : <ins>0.898310</ins></i> or <ins>89%</ins>
