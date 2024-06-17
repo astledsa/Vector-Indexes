@@ -16,3 +16,8 @@ One of the simplest vector index structure, which is just a subset of the KD Tre
 <i>Index Construction : <ins>290.871062s</ins></i><br>
 <i>Average Search Time:  <ins>0.058535s</ins></i><br>
 <i>Precision : <ins>0.898310</ins></i> or <ins>89%</ins>
+
+## To-Do
+
+<img width="594" alt="Screenshot 1946-03-22 at 6 26 58 PM" src="https://github.com/Astle-sudo/Vector-Indexes/assets/67687557/2764a88d-d516-4619-be7e-010761a14e2a">
+
