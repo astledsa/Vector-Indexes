@@ -114,12 +114,7 @@ func (tree *Heap) Insert(distance float32, vector []float32) error {
 
 	new_node := &node_to_insert
 	for new_node.Less(new_node.Parent) {
-		tempDistance := new_node.Parent.Distance
-		tempVector := new_node.Parent.Vector
-		new_node.Parent.Distance = new_node.Distance
-		new_node.Parent.Vector = new_node.Vector
-		new_node.Distance = tempDistance
-		new_node.Vector = tempVector
+		SwapNodes(new_node, new_node.Parent)
 		new_node = new_node.Parent
 	}
 
