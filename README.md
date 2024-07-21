@@ -20,6 +20,7 @@ One of the simplest vector index structure, which is just a subset of the KD Tre
 ## To-Do
 
 <img width="594" alt="Screenshot 1946-03-22 at 6 26 58 PM" src="https://github.com/Astle-sudo/Vector-Indexes/assets/67687557/2764a88d-d516-4619-be7e-010761a14e2a">
+
 - [ACORN](https://arxiv.org/abs/2403.04871) 
 - [FERN] (https://arxiv.org/abs/2405.04435) 
 - [Dimensionality Reduction] (https://arxiv.org/abs/2404.06278) 
