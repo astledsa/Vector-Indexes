@@ -47,7 +47,4 @@ for i := 1; i < numVectors; i++ {
 
 query := randomVector(dim)
 Results := index.Search(query, 5, 64)
-for i, node := range Results {
-	fmt.Printf("Result %d: [%.4f ...] (CosSim: %.4f)\n", i+1, node.Data.Data[0], query.CosineSimiliarity(&node.Data))
-}
 ```
