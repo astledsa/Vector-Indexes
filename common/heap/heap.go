@@ -165,5 +165,3 @@ func (tree *Heap) Pop() []float32 {
 func (tree *Heap) Peek() []float32 {
 	return tree.Root.Vector
 }
-
-// go run heap.go

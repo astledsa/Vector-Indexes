@@ -11,8 +11,7 @@ One of the first variations on KD Trees, this is perhaps the simplest data struc
 
 ## Code Snippet
 
-```
-// Generate a random vector of K dimensions
+```Go
 func randomFloat32Array(K int) []float32 {
 	result := make([]float32, K)
 	for i := range result {
@@ -24,20 +23,12 @@ func randomFloat32Array(K int) []float32 {
 func main() {
 	K := 128
 	number_of_vectors_to_index := 100
-
-	// Initialise an empty vantage point tree
 	vantage_point_tree := vptree.Init_VPTree()
 
-	// Insert 100 points in the tree. The first point becomes
-	// the vantage point by default.
 	for i := 0; i < number_of_vectors_to_index; i++ {
 		vantage_point_tree.Insert(randomFloat32Array(K))
 	}
 
-	// The search returns a priority Queue or a binary heap
-	// The Pop() function returns the top element in the list,
-	// and keeps returning the current top element whenever
-	// called
 	query := randomFloat32Array(K)
 	priorityQueue := vantage_point_tree.Search(query, 5)
 	fmt.Println(priorityQueue.Pop())
